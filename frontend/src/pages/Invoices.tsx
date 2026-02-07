@@ -57,7 +57,7 @@ export default function Invoices() {
   const handleView = async (invoice: any) => {
     setIsLoadingView(true);
     try {
-      const res = await API.get(`/invoices/${invoice.id || invoice._id}`);
+      const res = await API.get(`/api/invoices/${invoice.id || invoice._id}`);
       setViewInvoice(res.data);
       setIsViewOpen(true);
     } catch (error) {
@@ -71,11 +71,11 @@ export default function Invoices() {
   const handlePrint = async (invoice: any) => {
     try {
       // 1. Fetch Shop Settings
-      const settingsRes = await API.get("/settings");
+      const settingsRes = await API.get("/api/settings");
       const shop = settingsRes.data;
 
       // 2. Fetch Full Invoice Details (to ensure items are populated)
-      const invoiceRes = await API.get(`/invoices/${invoice.id || invoice._id}`);
+      const invoiceRes = await API.get(`/api/invoices/${invoice.id || invoice._id}`);
       const fullInvoice = invoiceRes.data;
 
       const itemsHtml = fullInvoice.items.map((item: any, index: number) => `
