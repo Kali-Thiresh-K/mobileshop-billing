@@ -186,7 +186,7 @@ export default function Products() {
                       <tr key={product.id} className="border-b border-border/30 hover:bg-muted/20">
                         <td className="p-4">
                           {product.image_url ? (
-                            <img src={`http://127.0.0.1:5000${product.image_url}`} alt={product.name} className="w-10 h-10 object-cover rounded-md" onError={(e) => (e.currentTarget.src = "/placeholder.svg")} />
+                            <img src={`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'}${product.image_url}`} alt={product.name} className="w-10 h-10 object-cover rounded-md" onError={(e) => (e.currentTarget.src = "/placeholder.svg")} />
                           ) : (
                             <div className="w-10 h-10 bg-secondary/20 rounded-md flex items-center justify-center"><ImageIcon className="w-5 h-5 text-muted-foreground" /></div>
                           )}

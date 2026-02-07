@@ -7,7 +7,7 @@ export function useCustomers() {
   return useQuery({
     queryKey: ["customers"],
     queryFn: async () => {
-      const { data } = await API.get("/customers");
+      const { data } = await API.get("/api/customers");
       return data.map((c: any) => ({ ...c, id: c._id })) as Customer[];
     },
   });
@@ -18,7 +18,7 @@ export function useCreateCustomer() {
 
   return useMutation({
     mutationFn: async (customer: Partial<Customer>) => {
-      const { data } = await API.post("/customers", customer);
+      const { data } = await API.post("/api/customers", customer);
       return data;
     },
     onSuccess: () => {
@@ -36,7 +36,7 @@ export function useUpdateCustomer() {
 
   return useMutation({
     mutationFn: async ({ id, ...customer }: Partial<Customer> & { id: string }) => {
-      const { data } = await API.put(`/customers/${id}`, customer);
+      const { data } = await API.put(`/api/customers/${id}`, customer);
       return data;
     },
     onSuccess: () => {
@@ -54,7 +54,7 @@ export function useDeleteCustomer() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      await API.delete(`/customers/${id}`);
+      await API.delete(`/api/customers/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["customers"] });

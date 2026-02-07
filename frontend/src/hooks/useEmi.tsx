@@ -20,7 +20,7 @@ export function useEmiPlans() {
   return useQuery({
     queryKey: ["emi_plans"],
     queryFn: async () => {
-      const { data } = await API.get("/emi/plans");
+      const { data } = await API.get("/api/emi/plans");
       return data.map((p: any) => ({
         ...p,
         id: p._id,
@@ -35,7 +35,7 @@ export function useEmiPayments(planId: string) {
   return useQuery({
     queryKey: ["emi_payments", planId],
     queryFn: async () => {
-      const { data } = await API.get(`/emi/plans/${planId}/payments`);
+      const { data } = await API.get(`/api/emi/plans/${planId}/payments`);
       return data.map((p: any) => ({ ...p, id: p._id })) as EmiPayment[];
     },
     enabled: !!planId,
@@ -47,7 +47,7 @@ export function useCreateEmiPlan() {
 
   return useMutation({
     mutationFn: async (plan: any) => {
-      const { data } = await API.post("/emi/plans", plan);
+      const { data } = await API.post("/api/emi/plans", plan);
       return data;
     },
     onSuccess: () => {
@@ -65,7 +65,7 @@ export function useRecordEmiPayment() {
 
   return useMutation({
     mutationFn: async ({ payment, planId }: { payment: any; planId: string; newBalance?: number }) => {
-      const { data } = await API.post(`/emi/plans/${planId}/payments`, payment);
+      const { data } = await API.post(`/api/emi/plans/${planId}/payments`, payment);
       return data;
     },
     onSuccess: () => {

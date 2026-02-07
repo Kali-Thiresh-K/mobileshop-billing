@@ -7,7 +7,7 @@ export function useProducts() {
   return useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const { data } = await API.get("/products");
+      const { data } = await API.get("/api/products");
       // Map backend response to match UI expectations if needed
       return data.map((p: any) => ({
         ...p,
@@ -24,7 +24,7 @@ export function useCreateProduct() {
 
   return useMutation({
     mutationFn: async (product: Partial<Product>) => {
-      const { data } = await API.post("/products", product);
+      const { data } = await API.post("/api/products", product);
       return data;
     },
     onSuccess: () => {
@@ -42,7 +42,7 @@ export function useUpdateProduct() {
 
   return useMutation({
     mutationFn: async ({ id, ...product }: Partial<Product> & { id: string }) => {
-      const { data } = await API.put(`/products/${id}`, product);
+      const { data } = await API.put(`/api/products/${id}`, product);
       return data;
     },
     onSuccess: () => {
@@ -60,7 +60,7 @@ export function useDeleteProduct() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      await API.delete(`/products/${id}`);
+      await API.delete(`/api/products/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
@@ -76,7 +76,7 @@ export function useBrands() {
   return useQuery({
     queryKey: ["brands"],
     queryFn: async () => {
-      const { data } = await API.get("/brands");
+      const { data } = await API.get("/api/brands");
       return data.map((b: any) => ({ ...b, id: b._id })) as Brand[];
     },
   });
@@ -86,7 +86,7 @@ export function useCategories() {
   return useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const { data } = await API.get("/categories");
+      const { data } = await API.get("/api/categories");
       return data.map((c: any) => ({ ...c, id: c._id })) as Category[];
     },
   });

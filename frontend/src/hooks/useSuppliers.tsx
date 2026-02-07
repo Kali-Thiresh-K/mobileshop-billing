@@ -17,7 +17,7 @@ export function useSuppliers() {
   return useQuery({
     queryKey: ["suppliers"],
     queryFn: async () => {
-      const { data } = await API.get("/suppliers");
+      const { data } = await API.get("/api/suppliers");
       return data.map((s: any) => ({ ...s, id: s._id })) as Supplier[];
     },
   });
@@ -28,7 +28,7 @@ export function useCreateSupplier() {
 
   return useMutation({
     mutationFn: async (supplier: Partial<Supplier>) => {
-      const { data } = await API.post("/suppliers", supplier);
+      const { data } = await API.post("/api/suppliers", supplier);
       return data;
     },
     onSuccess: () => {
@@ -46,7 +46,7 @@ export function useUpdateSupplier() {
 
   return useMutation({
     mutationFn: async ({ id, ...supplier }: Partial<Supplier> & { id: string }) => {
-      const { data } = await API.put(`/suppliers/${id}`, supplier);
+      const { data } = await API.put(`/api/suppliers/${id}`, supplier);
       return data;
     },
     onSuccess: () => {
@@ -64,7 +64,7 @@ export function useDeleteSupplier() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      await API.delete(`/suppliers/${id}`);
+      await API.delete(`/api/suppliers/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["suppliers"] });

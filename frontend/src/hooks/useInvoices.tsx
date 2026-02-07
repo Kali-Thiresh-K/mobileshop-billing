@@ -7,7 +7,7 @@ export function useInvoices() {
   return useQuery({
     queryKey: ["invoices"],
     queryFn: async () => {
-      const { data } = await API.get("/invoices");
+      const { data } = await API.get("/api/invoices");
       return data.map((i: any) => ({ ...i, id: i._id, customers: i.customerId })) as Invoice[];
     },
   });
@@ -17,7 +17,7 @@ export function useInvoiceItems(invoiceId: string) {
   return useQuery({
     queryKey: ["invoice_items", invoiceId],
     queryFn: async () => {
-      const { data } = await API.get(`/invoices/${invoiceId}`);
+      const { data } = await API.get(`/api/invoices/${invoiceId}`);
       // Backend returns the full invoice with items embedded
       return data.items.map((item: any) => ({
         ...item,
@@ -51,7 +51,7 @@ export function useCreateInvoice() {
         customerId: invoice.customer_id
       };
 
-      const { data } = await API.post("/invoices", payload);
+      const { data } = await API.post("/api/invoices", payload);
       return data;
     },
     onSuccess: () => {
@@ -72,7 +72,7 @@ export function useDeleteInvoice() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      await API.delete(`/invoices/${id}`);
+      await API.delete(`/api/invoices/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["invoices"] });
@@ -91,7 +91,7 @@ export function useDashboardStats() {
   return useQuery({
     queryKey: ["dashboard-stats"],
     queryFn: async () => {
-      const { data } = await API.get("/dashboard/stats");
+      const { data } = await API.get("/api/dashboard/stats");
       return data;
     },
   });
