@@ -293,7 +293,7 @@ export default function POS() {
                         <div className="aspect-square bg-gradient-to-br from-muted to-muted/50 rounded-xl mb-3 flex items-center justify-center overflow-hidden relative">
                           {product.image_url ? (
                             <img
-                              src={`http://127.0.0.1:5000${product.image_url}`}
+                              src={`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'}${product.image_url}`}
                               alt={product.name}
                               className="w-full h-full object-cover"
                               onError={(e) => {
