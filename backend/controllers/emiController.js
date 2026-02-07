@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const EmiPlan = require('../models/EmiPlan');
+const Customer = require('../models/Customer');
 
 // @desc    Get all EMI plans
 // @route   GET /api/emi/plans
@@ -45,6 +46,16 @@ const recordPayment = asyncHandler(async (req, res) => {
         }
 
         const updatedPlan = await plan.save();
+
+        // Sync with Customer Outstanding Balance
+        if (plan.customerId) {
+            const customer = await Customer.findById(plan.customerId);
+            if (customer) {
+                customer.outstanding_balance = Math.max(0, (customer.outstanding_balance || 0) - amount_paid);
+                await customer.save();
+            }
+        }
+
         res.json(updatedPlan);
     } else {
         res.status(404);
