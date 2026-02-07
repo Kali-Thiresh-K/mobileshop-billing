@@ -33,7 +33,7 @@ export default function Settings() {
 
   const fetchSettings = async () => {
     try {
-      const { data } = await API.get("/settings");
+      const { data } = await API.get("/api/settings");
       setSettings(data);
     } catch (error: any) {
       console.error("Error fetching settings:", error);
@@ -48,7 +48,7 @@ export default function Settings() {
     setSaving(true);
 
     try {
-      await API.put("/settings", settings);
+      await API.put("/api/settings", settings);
       toast.success("Settings saved successfully");
     } catch (error: any) {
       toast.error(`Failed to save settings: ${error.message}`);
