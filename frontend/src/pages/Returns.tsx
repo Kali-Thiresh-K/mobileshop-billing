@@ -45,7 +45,7 @@ export default function Returns() {
   const { data: returns, isLoading: isLoadingReturns } = useQuery({
     queryKey: ["returns"],
     queryFn: async () => {
-      const { data } = await API.get("/returns");
+      const { data } = await API.get("/api/returns");
       return data;
     },
   });
@@ -58,7 +58,7 @@ export default function Returns() {
   // Mutation for creating return
   const createReturnMutation = useMutation({
     mutationFn: async (data: any) => {
-      const res = await API.post("/returns", data);
+      const res = await API.post("/api/returns", data);
       return res.data;
     },
     onSuccess: () => {
@@ -91,7 +91,7 @@ export default function Returns() {
       // So we might need to fetch the single invoice to get product details.
 
       // Fetch full invoice
-      API.get(`/invoices/${invoice.id || invoice._id}`).then(res => {
+      API.get(`/api/invoices/${invoice.id || invoice._id}`).then(res => {
         setSelectedInvoice(res.data);
         // Initialize return items state
         const initialItems: any = {};
