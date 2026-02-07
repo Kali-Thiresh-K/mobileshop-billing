@@ -38,7 +38,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const token = localStorage.getItem("token");
       if (token) {
         try {
-          const { data } = await API.get("/auth/profile");
+          const { data } = await API.get("/api/auth/profile");
           setUser(data);
           setUserRole(data.role);
         } catch (error) {
@@ -55,14 +55,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = async (formData: any) => {
-    const { data } = await API.post("/auth/login", formData);
+    const { data } = await API.post("/api/auth/login", formData);
     localStorage.setItem("token", JSON.stringify(data.token));
     setUser(data);
     setUserRole(data.role);
   };
 
   const register = async (formData: any) => {
-    const { data } = await API.post("/auth/register", formData);
+    const { data } = await API.post("/api/auth/register", formData);
     localStorage.setItem("token", JSON.stringify(data.token));
     setUser(data);
     setUserRole(data.role);
