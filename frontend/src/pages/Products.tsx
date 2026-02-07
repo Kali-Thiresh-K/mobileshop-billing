@@ -108,12 +108,12 @@ export default function Products() {
       }
 
       if (editingId) {
-        await API.put(`/products/${editingId}`, data, {
+        await API.put(`/api/products/${editingId}`, data, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         toast.success("Product updated successfully");
       } else {
-        await API.post('/products', data, {
+        await API.post('/api/products', data, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
         toast.success("Product added successfully");
