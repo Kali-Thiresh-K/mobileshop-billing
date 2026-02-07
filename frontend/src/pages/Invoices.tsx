@@ -223,10 +223,7 @@ export default function Invoices() {
             <h1 className="text-3xl font-bold">Invoices</h1>
             <p className="text-muted-foreground mt-1">View and manage all invoices</p>
           </div>
-          <Button variant="gradient">
-            <Download className="w-4 h-4" />
-            Export
-          </Button>
+
         </div>
 
         <Card glass>
