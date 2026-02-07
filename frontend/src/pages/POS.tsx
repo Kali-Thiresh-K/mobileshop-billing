@@ -211,7 +211,7 @@ export default function POS() {
 
   return (
     <AppLayout>
-      <div className="flex flex-col lg:flex-row gap-6 h-[calc(100vh-8rem)]">
+      <div className="flex flex-col lg:flex-row gap-6 h-auto lg:h-[calc(100vh-8rem)]">
         {/* Products Section */}
         <div className="flex-1 flex flex-col">
           <div className="mb-4">
