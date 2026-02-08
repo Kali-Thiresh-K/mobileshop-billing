@@ -17,7 +17,8 @@ const debug = async () => {
             output.push(msg);
         };
 
-        const products = await Product.find({}).sort({ createdAt: -1 }).limit(5);
+        const products = await Product.find({ name: { $regex: 'vivo t4x', $options: 'i' } });
+        log(`Found ${products.length} products matching 'vivo t4x'`);
         log(`Checking last ${products.length} products (newest first)`);
 
         products.forEach(p => {

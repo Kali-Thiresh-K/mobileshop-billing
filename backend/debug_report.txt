@@ -1,27 +1,7 @@
-Checking last 5 products (newest first)
-Product: iqoo neo 10
-  ID: 6986df71c0e2f47adcbfd3be
-  Image URL: /uploads/image-1770446705027.jpg
-  File exists: Yes (image-1770446705027.jpg)
----
+Found 1 products matching 'vivo t4x'
+Checking last 1 products (newest first)
 Product: vivo t4x
   ID: 6981e7a927bfa6f3118067d9
-  Image URL: /uploads/image-1770472930103.jpg
-  File exists: NO
-  Expected at: C:\Users\kalit\Downloads\mobile-shop-genius-main\mobile-shop-genius-main\backend\uploads\image-1770472930103.jpg
----
-Product: iphone 15
-  ID: 6980e5f0ae6292076e8c57f0
-  Image URL: /uploads/image-1770055152679.jpg
-  File exists: Yes (image-1770055152679.jpg)
----
-Product: vivo v40
-  ID: 6980dce3d3073e99b25db3fd
-  Image URL: /uploads/image-1770052835576.jpg
-  File exists: Yes (image-1770052835576.jpg)
----
-Product: oppo reno 15
-  ID: 6980d9437b92fab98baf133f
-  Image URL: /uploads/image-1770052918554.jpg
-  File exists: Yes (image-1770052918554.jpg)
+  Image URL: /uploads/image-1770478970680.jpg
+  File exists: Yes (image-1770478970680.jpg)
 ---
